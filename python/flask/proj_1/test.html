@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>dynamic</title>
+  <script src="/static/jquery-3.2.1.min.js"></script>
+  <script src="/static/echarts.min.js"></script>
+</head>
+<body>
+<div id="echart1" style="width:1200px;height:700px;"></div>
+<script type="text/javascript">
+$(document).ready(function(){
+  var obj = new Object();
+  obj.地区 = '中国';
+  ajaxEC1("echart1", obj);
+});
+
+function plotEC1(echartId, obj){
+  var myChart = echarts.init(document.getElementById(echartId));
+  var option = {
+    title: {
+      text: '数量统计',
+      //subtext: '返回主页',
+      //sublink: 'http://182.61.9.160',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      data:['2015年新增','2015年','2016年新增','2016年'],
+      show: false
+    },
+    visualMap: {
+      min: 0,
+      max: 500,
+      precision: 2,
+      left: 'left',
+      top: 'bottom',
+      calculable: true,
+      inRange: {
+        color: ['lightskyblue','yellow','orangered']
+      },
+      show: false
+    },
+    series: [
+      {
+        name: '2015年',
+        type: 'map',
+        //showLegendSymbol: false,
+        roam: false,
+        label: {normal:{show:true},emphasis:{show:true}},
+        data: [//new Array()
+          {name: '北京',value: 105.1 },
+          {name: '天津',value: 25.55 },
+          {name: '河北',value: 33.56 },
+          {name: '山西',value: 25 },
+          {name: '内蒙古',value: 0 },
+          {name: '辽宁',value: 35.66 },
+          {name: '吉林',value: 28.86 },
+          {name: '黑龙江',value: 0 },
+          {name: '上海',value: 0 },//
+          {name: '江苏',value: 0 },
+          {name: '浙江',value: 130 },//
+          {name: '安徽',value: 21 },
+          {name: '福建',value: 32.79 },
+          {name: '江西',value: 27.72 },
+          {name: '山东',value: 20 },//
+          {name: '河南',value: 58.75 },
+          {name: '湖北',value: 30.8 },
+          {name: '湖南',value: 4 },
+          {name: '广东',value: 90.2 },
+          {name: '广西',value: 20.05 },
+          {name: '海南',value: 8.2 },
+          {name: '重庆',value: 32.7 },
+          {name: '四川',value: 0 },
+          {name: '贵州',value: 67 },
+          {name: '云南',value: 10.7 },
+          {name: '西藏',value: 1 },//
+          {name: '陕西',value: 27.5 },
+          {name: '甘肃',value: 12.3 },
+          {name: '青海',value: 0 },
+          {name: '宁夏',value: 2.52 },
+          {name: '新疆',value: 10.2 },
+          {name: '台湾',value: 0 },
+          {name: '香港',value: 0 },
+          {name: '澳门',value: 0 }
+        ]
+      },
+      {
+        name: '2015年新增',
+        type: 'map',
+        showLegendSymbol: false,
+        roam: false,
+        label: {normal:{show:true},emphasis:{show:true}},
+        data: [
+          {name: '北京',value: 24.27 },
+          {name: '天津',value: 7.17 },
+          {name: '辽宁',value: 7.35 },
+          {name: '上海',value: 25.43 },
+          {name: '福建',value: 15.63 },
+          {name: '江西',value: 34.3 },
+          {name: '山东',value: 20 },
+          {name: '河南',value: 82.11 },
+          {name: '湖北',value: 10.5 },
+          {name: '广东',value: 51.2 },
+          {name: '云南',value: 5.1 },
+          {name: '陕西',value: 9.17 }
+        ]
+      },
+      {
+        name: '2016年',
+        type: 'map',
+        showLegendSymbol: false,
+        roam: false,
+        label: {normal:{show:true},emphasis:{show:true}},
+        data: [
+          {name: '北京',value: 129.2 },
+          {name: '天津',value: 31.55 },
+          {name: '河北',value: 49.02 },
+          {name: '山西',value: 32.32 },
+          {name: '内蒙古',value: 0 },
+          {name: '辽宁',value: 64.26 },
+          {name: '吉林',value: 44.53 },
+          {name: '黑龙江',value: 0 },
+          {name: '上海',value: 0 },
+          {name: '江苏',value: 0 },
+          {name: '浙江',value: 140 },
+          {name: '安徽',value: 35 },
+          {name: '福建',value: 40.82 },
+          {name: '江西',value: 41.35 },
+          {name: '山东',value: 29.56 },
+          {name: '河南',value: 70 },
+          {name: '湖北',value: 37.5 },
+          {name: '湖南',value: 6 },
+          {name: '广东',value: 117.5 },
+          {name: '广西',value: 23.25 },
+          {name: '海南',value: 9.45 },
+          {name: '重庆',value: 42.6 },
+          {name: '四川',value: 0 },
+          {name: '贵州',value: 95.6 },
+          {name: '云南',value: 13.6 },
+          {name: '西藏',value: 2 },
+          {name: '陕西',value: 27.15 },
+          {name: '甘肃',value: 16 },
+          {name: '青海',value: 0 },
+          {name: '宁夏',value: 3.83 },
+          {name: '新疆',value: 11.1 },
+          {name: '台湾',value: 0 },
+          {name: '香港',value: 0 },
+          {name: '澳门',value: 0 }
+        ]
+      },
+      {
+        name: '2016年新增',
+        type: 'map',
+        showLegendSymbol: false,
+        roam: false,
+        label: {normal:{show:true},emphasis:{show:true}},
+        data: [
+          {name: '北京',value: 24.62 },
+          {name: '天津',value: 9.38 },
+          {name: '辽宁',value: 13.75 },
+          {name: '上海',value: 34.7 },
+          {name: '福建',value: 18 },
+          {name: '江西',value: 41.3 },
+          {name: '山东',value: 36.29 },
+          {name: '河南',value: 99.1 },
+          {name: '湖北',value: 12.1 },
+          {name: '广东',value: 64.3 },
+          {name: '云南',value: 6.4 },
+          {name: '陕西',value: 9.05 }
+        ]
+      }
+    ]
+  };
+  //for(i in obj.区市){
+    //option.series[0].data.push({name:obj.区市[i],value:obj.数据[i]});
+  //}
+  option.tooltip = {
+    trigger: 'item',
+    formatter: function(params){
+      var res = params.name+'<br/>';
+      var myseries = option.series;
+      var sum = 0;
+      for(var i=0;i<myseries[1].data.length;i++){
+        if(myseries[1].data[i].name==params.name){
+          res += myseries[1].name+' : '+myseries[1].data[i].value+' 万户<br/>';
+        }
+      }
+      for(var i=0;i<myseries[0].data.length;i++){
+        if(myseries[0].data[i].name==params.name){
+          res += myseries[0].name+'新增 : '+myseries[0].data[i].value+' 万枚章<br/>';
+          sum += myseries[0].data[i].value;
+        }
+      }
+      for(var i=0;i<myseries[3].data.length;i++){
+        if(myseries[3].data[i].name==params.name){
+          res += myseries[3].name+' : '+myseries[3].data[i].value+' 万户<br/>';
+        }
+      }
+      for(var i=0;i<myseries[2].data.length;i++){
+        if(myseries[2].data[i].name==params.name){
+          res += myseries[2].name+'新增 : '+myseries[2].data[i].value+' 万枚章<br/>';
+          sum += myseries[2].data[i].value;
+        }
+      }
+      if(sum > 0){
+        res += '公章总量 : '+sum.toFixed(2)+'万枚章<br/>';
+        res += '芯片公章总量 : '+sum.toFixed(2)+'万枚章<br/>';
+      }
+      res += '当月上传总量 : 1<br/>上传率 : 100%<br/>';
+      return res;
+    }
+  };
+
+  myChart.clear();
+  myChart.setOption(option);
+  getMap(obj.地区);
+  myChart.off('click');
+  myChart.on('click', function(params){
+    var obj = new Object();
+    if(myChart.getOption().series[0].map == "china"){
+      obj.地区 = params.name;
+    }
+    else{
+      obj.地区 = '中国';
+    }
+    ajaxEC1(echartId, obj);
+  });
+}
+
+function ajaxEC1(echartId, obj){
+  $.ajax({
+    url: '/sendjson/test',
+    type: 'POST',
+    data: JSON.stringify(obj),
+    dataType: 'json',
+    success: function(msg){
+      plotEC1(echartId, msg);
+    }
+  });
+}
+
+function getMap(name){
+  var id = {
+    '中国':'china', '河北':'hebei', '山西':'shanxi', '内蒙古':'neimenggu',
+    '辽宁':'liaoning', '吉林':'jilin', '黑龙江':'heilongjiang', '江苏':'jiangsu',
+    '浙江':'zhejiang', '安徽':'anhui', '福建':'fujian', '江西':'jiangxi', '山东':'shandong',
+    '河南':'henan', '湖北':'hubei', '湖南':'hunan', '广东':'guangdong', '广西':'guangxi',
+    '海南':'hainan', '四川':'sichuan', '贵州':'guizhou', '云南':'yunnan', '西藏':'xizang',
+    '陕西':'shanxi1', '甘肃':'gansu', '青海':'qinghai', '宁夏':'ningxia', '新疆':'xinjiang',
+    '北京':'beijing', '天津':'tianjin', '上海':'shanghai', '重庆':'chongqing',
+    '香港':'xianggang', '澳门':'aomen', '台湾':'taiwan'
+  };
+  $.get('/static/map/'+id[name]+'.json', function(mapJson){
+    echarts.registerMap(id[name], mapJson);
+    var chart = echarts.init(document.getElementById('echart1'));
+    var option = chart.getOption();
+    option.series[0].map = id[name];
+    option.series[1].map = id[name];
+    option.series[2].map = id[name];
+    option.series[3].map = id[name];
+    chart.setOption(option);
+  });
+}
+</script>
+</body>
+</html>
