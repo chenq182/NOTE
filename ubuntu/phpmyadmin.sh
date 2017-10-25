@@ -14,7 +14,7 @@ InstallCFGs() {
     cp /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/my.cnf
     sed -i '/\[mysqld\]/a\character_set_server=utf8\ncollation-server=utf8_general_ci' \
         /etc/mysql/my.cnf
-    sed -i 's/^.*#.*bind-address/bind-address/g' /etc/mysql/my.cnf
+    sed -i 's/^.*bind-address/# bind-address/g' /etc/mysql/my.cnf
 }
 
 ##################################################
