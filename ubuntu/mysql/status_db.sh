@@ -1,10 +1,8 @@
 #!/bin/bash
-
-HOSTNAME="127.0.0.1"
-PORT="3306"
-USERNAME="root"
-PASSWORD="123456"
+set -o nounset
+cd $(dirname $0)
+source context_
 
 SQL="SHOW DATABASES;"
 
-mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} -e"${SQL}"
+mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -e"${SQL}"
