@@ -1,12 +1,6 @@
 <mirror>
-    <id>nexus-osc</id>
+    <id>alimaven</id>
     <mirrorOf>central</mirrorOf>
-    <name>Nexus osc</name>
-    <url>http://maven.oschina.net/content/groups/public/</url>
-</mirror>
-<mirror>
-    <id>nexus-osc-thirdparty</id>
-    <mirrorOf>thirdparty</mirrorOf>
-    <name>Nexus osc thirdparty</name>
-    <url>http://maven.oschina.net/content/repositories/thirdparty/</url>
+    <name>aliyun maven</name>
+    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
 </mirror>
