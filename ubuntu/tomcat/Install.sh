@@ -12,7 +12,9 @@ DES_NAME="tomcat9"
 PKG_URL="http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.1/bin/apache-tomcat-9.0.1.tar.gz"
 
 InstallCFGs() {
+    Backup ${DES_PATH}/${DES_NAME}/conf/server.xml
     sed -i 's/8080/80/' ${DES_PATH}/${DES_NAME}/conf/server.xml
+
     ln -s ${DES_PATH}/${DES_NAME}/bin/startup.sh
     ln -s ${DES_PATH}/${DES_NAME}/bin/shutdown.sh
     ln -s ${DES_PATH}/${DES_NAME}/webapps
