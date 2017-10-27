@@ -17,6 +17,7 @@ InstallCFGs() {
     sed -i '/# JAVA BEGIN #/{x;:a;N;/# JAVA END #/!ba;d}' /etc/profile
     echo "# JAVA BEGIN #" >>/etc/profile
     echo -e "export JAVA_HOME=${DES_PATH}/${DES_NAME}" >>/etc/profile
+    echo "export JRE_HOME=\${JAVA_HOME}/jre" >>/etc/profile
     echo "# JAVA END #" >>/etc/profile
 
     ln -s ${DES_PATH}/${DES_NAME}/bin/java /usr/local/bin
@@ -66,6 +67,6 @@ Step "Install config files"
     InstallCFGs
 Done
 
-Message "FINISHED. Reboot needed."
+Message "FINISHED.(Reboot needed.)"
 
 # vim: set tabstop=4 shiftwidth=4:
