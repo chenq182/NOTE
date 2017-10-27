@@ -13,6 +13,9 @@ PKG_URL="http://mirror.bit.edu.cn/apache/maven/maven-3/3.5.2/binaries/apache-mav
 PKG_NAME="apache-maven-3.5.2"
 
 InstallCFGs() {
+    Backup ${DES_PATH}/${DES_NAME}/conf/settings.xml
+    sed -i '/^\s*<mirrors>\s*$/ r conf/mirror.xml' ${DES_PATH}/${DES_NAME}/conf/settings.xml
+
     ln -s ${DES_PATH}/${DES_NAME}/bin/mvn /usr/local/bin
 }
 
