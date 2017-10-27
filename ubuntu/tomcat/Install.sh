@@ -48,8 +48,8 @@ Done
 Step "Create shortcuts"
     ln -s ${DES_PATH}/${DES_NAME}/bin/startup.sh
     ln -s ${DES_PATH}/${DES_NAME}/bin/shutdown.sh
-    ln -s ${DES_PATH}/${DES_NAME}/webapps/
-    ln -s ${DES_PATH}/${DES_NAME}/logs/
+    ln -s ${DES_PATH}/${DES_NAME}/webapps
+    ln -s ${DES_PATH}/${DES_NAME}/logs
 Done
 
 Message "FINISHED."
