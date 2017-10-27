@@ -9,16 +9,15 @@ cd $(dirname $0)
 
 DES_PATH="/usr/share"
 DES_NAME="java"
-PKG_URL="--no-check-certificate --no-cookies --header \"Cookie: oraclelicense=accept-securebackup-cookie\" http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.tar.gz"
-PKG_NAME="jdk1.8.0_152"
+PKG_URL="http://download.java.net/java/jdk8u162/archive/b01/binaries/jdk-8u162-ea-bin-b01-linux-x64-04_oct_2017.tar.gz"
+PKG_NAME="jdk1.8.0_162"
 
 InstallCFGs() {
     Backup /etc/profile
     sed -i '/# JAVA BEGIN #/{x;:a;N;/# JAVA END #/!ba;d}' /etc/profile
-    echo -e "\n# JAVA BEGIN #" >>/etc/profile
+    echo "# JAVA BEGIN #" >>/etc/profile
     echo -e "export JAVA_HOME=${DES_PATH}/${DES_NAME}" >>/etc/profile
     echo "# JAVA END #" >>/etc/profile
-    source /etc/profile
 
     ln -s ${DES_PATH}/${DES_NAME}/bin/java /usr/local/bin
     ln -s ${DES_PATH}/${DES_NAME}/bin/javac /usr/local/bin
@@ -67,6 +66,6 @@ Step "Install config files"
     InstallCFGs
 Done
 
-Message "FINISHED."
+Message "FINISHED. Reboot needed."
 
 # vim: set tabstop=4 shiftwidth=4:
