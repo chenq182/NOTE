@@ -11,6 +11,14 @@ DES_PATH="/usr/share"
 DES_NAME="tomcat9"
 PKG_URL="http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.1/bin/apache-tomcat-9.0.1.tar.gz"
 
+InstallCFGs() {
+    sed -i 's/8080/80/' ${DES_PATH}/${DES_NAME}/conf/server.xml
+    ln -s ${DES_PATH}/${DES_NAME}/bin/startup.sh
+    ln -s ${DES_PATH}/${DES_NAME}/bin/shutdown.sh
+    ln -s ${DES_PATH}/${DES_NAME}/webapps
+    ln -s ${DES_PATH}/${DES_NAME}/logs
+}
+
 ##################################################
 # Common functions and variables
 ##################################################
@@ -45,11 +53,8 @@ Step "Install PKG"
     mv ${DES_PATH}/${PKG_NAME} ${DES_PATH}/${DES_NAME}
 Done
 
-Step "Create shortcuts"
-    ln -s ${DES_PATH}/${DES_NAME}/bin/startup.sh
-    ln -s ${DES_PATH}/${DES_NAME}/bin/shutdown.sh
-    ln -s ${DES_PATH}/${DES_NAME}/webapps
-    ln -s ${DES_PATH}/${DES_NAME}/logs
+Step "Install config files"
+    InstallCFGs
 Done
 
 Message "FINISHED."
