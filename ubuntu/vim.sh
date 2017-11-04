@@ -34,4 +34,7 @@ Done
 
 Message "FINISHED."
 
+
+# :set fileformat=unix
+
 # vim: set tabstop=4 shiftwidth=4:
