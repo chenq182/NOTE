@@ -18,6 +18,8 @@ PKG_GZ=archives_samba.tar.gz
 # https://packages.ubuntu.com/xenial/amd64/smbclient/download
 
 InstallCFGs() {
+    mkdir /home/share
+    chmod 777 /home/share
     Backup /etc/samba/smb.conf
     cat conf/smb.conf >> /etc/samba/smb.conf
     sudo /etc/init.d/samba restart
