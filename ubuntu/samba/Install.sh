@@ -18,7 +18,7 @@ InstallCFGs() {
     chmod 777 /home/share
     Backup /etc/samba/smb.conf
     cat conf/smb.conf >> /etc/samba/smb.conf
-    sudo /etc/init.d/samba restart
+    /etc/init.d/samba restart
 }
 
 ##################################################
