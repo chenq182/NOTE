@@ -10,19 +10,12 @@ cd $(dirname $0)
 
 LOCAL_GROUP=share
 LOCAL_USER=share
+PKG_GZ=archives_samba.tar.gz
 # /var/cache/apt/archives
 # apt-get install samba
 # apt-get install smbclient
 # https://packages.ubuntu.com/xenial/amd64/samba/download
 # https://packages.ubuntu.com/xenial/amd64/smbclient/download
-DEB_LIST=(\
-"" \
-"" \
-"" \
-"" \
-"" \
-"" \
-)
 
 InstallCFGs() {
     Backup /etc/samba/smb.conf
@@ -47,16 +40,17 @@ Step "Check for root privileges"
     fi
 Done
 
-for pkg in ${DEB_LIST[@]};do
-Step "Install PKG <$pkg>"
-    PKG_FILE=${pkg##*/}
-    dpkg -i $PKG_FILE
+Step "Install PKG"
+    tar zxvf $PKG_GZ -C ./
+    PKG_FILE=${PKG_GZ##*/}
+    PKG_DIR=${PKG_FILE%%.tar*}
+    dpkg -i $PKG_DIR/*.deb
     if [[ $? != 0 ]]; then
-        Error "Installation failed! Please install the package <$pkg> manually."
+        Error "Installation failed!"
         exit 1
     fi
+    rm -rf $PKG_DIR
 Done
-done
 
 # http://blog.csdn.net/bluishglc/article/details/42060223
 Step "Create local user"
