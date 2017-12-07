@@ -10,10 +10,19 @@ cd $(dirname $0)
 
 LOCAL_GROUP=share
 LOCAL_USER=share
+# /var/cache/apt/archives
+# apt-get install samba
+# apt-get install smbclient
 # https://packages.ubuntu.com/xenial/amd64/samba/download
-PKG_samba_URL="http://security.ubuntu.com/ubuntu/pool/main/s/samba/samba_4.3.11+dfsg-0ubuntu0.16.04.12_amd64.deb"
 # https://packages.ubuntu.com/xenial/amd64/smbclient/download
-PKG_smbclient_URL="http://security.ubuntu.com/ubuntu/pool/main/s/samba/smbclient_4.3.11+dfsg-0ubuntu0.16.04.12_amd64.deb"
+DEB_LIST=(\
+"" \
+"" \
+"" \
+"" \
+"" \
+"" \
+)
 
 InstallCFGs() {
     Backup /etc/samba/smb.conf
@@ -38,31 +47,16 @@ Step "Check for root privileges"
     fi
 Done
 
-Step "Downloading PKG <samba>"
-    PKG_URL=${PKG_samba_URL}
-    PKG_FILE=${PKG_URL##*/}
-    if [ -f "${PKG_FILE}" ];then
-        Error "${PKG_FILE} exists."
-    else
-        wget -c ${PKG_URL}
+for pkg in ${DEB_LIST[@]};do
+Step "Install PKG <$pkg>"
+    PKG_FILE=${pkg##*/}
+    dpkg -i $PKG_FILE
+    if [[ $? != 0 ]]; then
+        Error "Installation failed! Please install the package <$pkg> manually."
+        exit 1
     fi
 Done
-Step "Install PKG <samba>"
-    dpkg -i $PKG_FILE
-Done
-
-Step "Downloading PKG <smbclient>"
-    PKG_URL=${PKG_smbclient_URL}
-    PKG_FILE=${PKG_URL##*/}
-    if [ -f "${PKG_FILE}" ];then
-        Error "${PKG_FILE} exists."
-    else
-        wget -c ${PKG_URL}
-    fi
-Done
-Step "Install PKG <smbclient>"
-    dpkg -i $PKG_FILE
-Done
+done
 
 # http://blog.csdn.net/bluishglc/article/details/42060223
 Step "Create local user"
