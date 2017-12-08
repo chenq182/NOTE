@@ -9,7 +9,7 @@ cd $(dirname $0)
 
 DES_PATH="/usr/share"
 DES_NAME="tomcat9"
-PKG_URL="http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.1/bin/apache-tomcat-9.0.1.tar.gz"
+PKG_FILE="apache-tomcat-9.0.1.tar.gz"
 
 InstallCFGs() {
     Backup ${DES_PATH}/${DES_NAME}/conf/server.xml
@@ -39,19 +39,16 @@ Step "Check for root privileges"
 Done
 
 Step "Downloading PKG"
-    PKG_FILE=${PKG_URL##*/}
     PKG_NAME=${PKG_FILE%%.tar*}
-    if [ -f "${PKG_FILE}" ];then
-        Error "${PKG_FILE} exists."
+    if [! -f "${PKG_FILE}" ];then
+        Error "${PKG_FILE} doesn't exist."
         exit 1
-    else
-        wget -c ${PKG_URL}
     fi
 Done
 
 Step "Install PKG"
     tar zxvf ${PKG_FILE} -C ${DES_PATH}/
-    echo -n "" >${PKG_FILE}
+    rm -rf ${DES_PATH}/${DES_NAME}
     mv ${DES_PATH}/${PKG_NAME} ${DES_PATH}/${DES_NAME}
 Done
 

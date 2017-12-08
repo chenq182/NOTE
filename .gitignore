@@ -7,3 +7,8 @@
 *.rar
 
 # Symbolic Links #
+# Symbolic Links #
+ubuntu/tomcat/startup.sh
+ubuntu/tomcat/logs
+ubuntu/tomcat/shutdown.sh
+ubuntu/tomcat/webapps
