@@ -9,8 +9,8 @@ cd $(dirname $0)
 
 DES_PATH="/usr/share"
 DES_NAME="java"
-PKG_URL="http://download.java.net/java/jdk8u162/archive/b01/binaries/jdk-8u162-ea-bin-b01-linux-x64-04_oct_2017.tar.gz"
-PKG_NAME="jdk1.8.0_162"
+PKG_FILE="jdk-8u152-linux-x64.tar.gz"
+PKG_NAME="jdk1.8.0_152"
 
 InstallCFGs() {
     Backup /etc/profile
@@ -42,23 +42,19 @@ Step "Check for root privileges"
     fi
 Done
 
-Step "Downloading PKG"
-    PKG_FILE=${PKG_URL##*/}
+Step "Verify PKG file"
     if [ -z "$PKG_NAME" ];then
         PKG_NAME=${PKG_FILE%%.tar*}
     fi
 
-    if [ -f "${PKG_FILE}" ];then
-        Error "${PKG_FILE} exists."
+    if [! -f "${PKG_FILE}" ];then
+        Error "${PKG_FILE} doesn't exist."
         exit 1
-    else
-        wget -c ${PKG_URL}
     fi
 Done
 
 Step "Install PKG"
     tar zxvf ${PKG_FILE} -C ${DES_PATH}/
-    echo -n "" >${PKG_FILE}
     rm -rf ${DES_PATH}/${DES_NAME}
     mv ${DES_PATH}/${PKG_NAME} ${DES_PATH}/${DES_NAME}
 Done
