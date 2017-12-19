@@ -2,6 +2,7 @@
 
 set -o nounset
 cd $(dirname $0)
+timedatectl set-local-rtc 1
 
 ##################################################
 # Common functions and variables
